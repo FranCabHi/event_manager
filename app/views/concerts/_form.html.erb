@@ -1,0 +1,40 @@
+<%= form_with(model: concert, local: true) do |form|%>
+    <% if concert.errors.any? %>
+        <div id="error_explanation">
+            <h2>El formulario contiene <%= pluralize(concert.errors.count, "error")%> y no se pudo guardar el concierto:</h2>
+            <ul>
+                <% concert.errors.full_messages.each do |message|%>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+    <div class="field py-1">
+        <%= form.label :group_id %>
+        <%= form.select :group_id, options_from_collection_for_select(@groups, :id, :group_name) %>
+    </div>
+
+    <div class="field py-1">
+        <%= form.label :place %>
+        <%= form.text_field :place %>
+    </div>
+
+    <div class="field py-1">
+        <%= form.label :concert_date %>
+        <%= form.date_select :concert_date %>
+    </div>
+
+    <div class="field py-1">
+        <%= form.label :attendance %>
+        <%= form.number_field :attendance %>
+    </div>
+
+    <div class="field py-1">
+        <%= form.label :duration %>
+        <%= form.number_field :duration %>
+    </div>
+    
+    <div class="actions py-1">
+        <%= form.submit %>
+    </div>
+<%end%>

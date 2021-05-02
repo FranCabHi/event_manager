@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Información de grupo</h1>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @group.group_name %>
+</p>
+
+<p>
+  <strong>Fecha de debut:</strong>
+  <%= @group.debut_dates%>
+</p>
+
+<p>
+  <strong>Cantidad de integrantes:</strong>
+  <%= @group.members %>
+</p>
+
+<p>
+  <strong>Tipo de grupo:</strong>
+  <%= @group.group_type %>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Conciertos este mes</th>
+      <th>Último concierto</th>
+      <th>Máximo de espectadores</th>
+      <th>Máximo de duración</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><%= @group.concerts_this_month %></td>
+      <% if @group.concerts.present? %>
+        <td><%= @group.last_concert.strftime("%Y-%B-%A") %></td>
+      <% else %>
+        <td>Grupo sin conciertos</td>
+      <% end %>
+      <td><%= @group.most_people %></td>
+      <td><%= @group.longest_concert %> min</td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Edit', edit_group_path(@group) %>
+<%= link_to 'Back', groups_path %>

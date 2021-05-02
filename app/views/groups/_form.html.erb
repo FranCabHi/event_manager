@@ -1,0 +1,47 @@
+<%= form_with(model: group, local: true) do |form| %>
+  <% if group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(group.errors.count, "error") %> prohibited this pet_history from being saved:</h2>
+
+      <ul>
+      <% group.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :group_name %>
+    <%= form.text_field :group_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :debut_dates, "Debut date" %>
+    <%= form.date_select :debut_dates %>
+  </div>
+
+  <div class="field">
+    <%= form.label :members %>
+    <%= form.text_field :members %>
+  </div>
+
+  <div id="crews">
+    <%= form.fields_for :crews do |ff| %>
+      <%= render 'crew_fields', :f => ff %>
+    <% end %>
+  </div>
+
+  <div class="links">
+    <%= link_to_add_association 'Add another member', form, :crews %>
+  </div>
+
+  <div class="field">
+    <%= form.label :group_type %>
+    <%= form.select :group_type, options_for_select(@group_types) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

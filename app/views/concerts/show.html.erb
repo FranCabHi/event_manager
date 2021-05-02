@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Información de concierto</h1>
+
+<p>
+  <strong>Grupo:</strong>
+  <%= @concert.group_names %>
+</p>
+
+<p>
+  <strong>Lugar:</strong>
+  <%= @concert.place %>
+</p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @concert.concert_date %>
+</p>
+
+<p>
+  <strong>Público:</strong>
+  <%= @concert.attendance %>
+</p>
+
+<p>
+  <strong>Duración:</strong>
+  <%= @concert.duration %>
+</p>
+
+
+<%= link_to 'Back', concerts_path %>
